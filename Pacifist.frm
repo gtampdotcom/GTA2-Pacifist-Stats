@@ -1,19 +1,19 @@
 VERSION 5.00
 Begin VB.Form Pacifist 
    BackColor       =   &H80000001&
-   Caption         =   "GTA2 Pacifist Stats v0.3"
-   ClientHeight    =   4230
+   Caption         =   "GTA2 Pacifist Stats v0.3 9.6(CD)"
+   ClientHeight    =   4305
    ClientLeft      =   225
    ClientTop       =   870
-   ClientWidth     =   5760
+   ClientWidth     =   6180
    Icon            =   "Pacifist.frx":0000
-   ScaleHeight     =   4230
-   ScaleWidth      =   5760
+   ScaleHeight     =   4305
+   ScaleWidth      =   6180
    StartUpPosition =   3  'Windows Default
    Begin VB.Timer timer 
       Interval        =   500
       Left            =   3480
-      Top             =   960
+      Top             =   1800
    End
    Begin VB.Label lblWantedLevelVal 
       BackColor       =   &H80000001&
@@ -31,7 +31,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   15
-      Top             =   2520
+      Top             =   3360
       Width           =   855
    End
    Begin VB.Label lblWantedLevel 
@@ -50,7 +50,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   14
-      Top             =   2520
+      Top             =   3360
       Width           =   3015
    End
    Begin VB.Label lblFugitiveFactorVal 
@@ -69,7 +69,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   13
-      Top             =   2040
+      Top             =   2880
       Width           =   3495
    End
    Begin VB.Label lblFujitiveFactor 
@@ -88,7 +88,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   12
-      Top             =   2040
+      Top             =   2880
       Width           =   4095
    End
    Begin VB.Label lblAutoDamageCostVal 
@@ -107,7 +107,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   11
-      Top             =   3000
+      Top             =   480
       Width           =   2895
    End
    Begin VB.Label lblVehiclesHijackedVal 
@@ -126,7 +126,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   10
-      Top             =   3480
+      Top             =   0
       Width           =   2895
    End
    Begin VB.Label lblAutoDamageCost 
@@ -145,7 +145,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   9
-      Top             =   3000
+      Top             =   480
       Width           =   4095
    End
    Begin VB.Label Label4 
@@ -164,7 +164,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   8
-      Top             =   3480
+      Top             =   0
       Width           =   4095
    End
    Begin VB.Label lblCiviliansRunDown 
@@ -183,7 +183,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   7
-      Top             =   120
+      Top             =   960
       Width           =   4095
    End
    Begin VB.Label lblCiviliansRunDownVal 
@@ -202,7 +202,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   6
-      Top             =   120
+      Top             =   960
       Width           =   2895
    End
    Begin VB.Label Label1 
@@ -221,7 +221,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   5
-      Top             =   600
+      Top             =   1440
       Width           =   4095
    End
    Begin VB.Label Label2 
@@ -240,7 +240,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   4
-      Top             =   1080
+      Top             =   1920
       Width           =   4095
    End
    Begin VB.Label Label3 
@@ -259,7 +259,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   120
       TabIndex        =   3
-      Top             =   1560
+      Top             =   2400
       Width           =   4095
    End
    Begin VB.Label lblCiviliansKilledVal 
@@ -278,7 +278,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   2
-      Top             =   600
+      Top             =   1440
       Width           =   3495
    End
    Begin VB.Label lblLawmenKilledVal 
@@ -297,7 +297,7 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   1
-      Top             =   1080
+      Top             =   1920
       Width           =   3495
    End
    Begin VB.Label lblGangMembersKilledVal 
@@ -316,11 +316,18 @@ Begin VB.Form Pacifist
       Height          =   495
       Left            =   4320
       TabIndex        =   0
-      Top             =   1560
+      Top             =   2400
       Width           =   3495
    End
    Begin VB.Menu mnuSettings 
       Caption         =   "&Files"
+      Begin VB.Menu mnuSettingsVehiclesHijacked 
+         Caption         =   "Create vehicles_hijacked.txt"
+         Checked         =   -1  'True
+      End
+      Begin VB.Menu mnuSettingsAutoDamageCost 
+         Caption         =   "Create auto_damage_cost.txt"
+      End
       Begin VB.Menu mnuSettingsCiviliansRundown 
          Caption         =   "Create civilians_rundown.txt"
          Checked         =   -1  'True
@@ -339,12 +346,6 @@ Begin VB.Form Pacifist
       End
       Begin VB.Menu mnuSettingsFugitiveFactor 
          Caption         =   "Create fugitive_factor.txt"
-      End
-      Begin VB.Menu mnuSettingsAutoDamageCost 
-         Caption         =   "Create auto_damage_cost.txt"
-      End
-      Begin VB.Menu mnuSettingsVehiclesHijacked 
-         Caption         =   "Create vehicles_hijacked.txt"
       End
    End
 End
@@ -423,7 +424,8 @@ End If
 GetWindowThreadProcessId hWnd, pid
 pHandle = OpenProcess(PROCESS_ALL_ACCESS, False, pid)
 
-Const stats_ptr = &H5E3CC4
+'Const stats_ptr = &H5E3CC4 '11.44
+Const stats_ptr = &H66D9C0 '9.6CD
 Const vehicles_hijacked_ptr = &H50C
 Const auto_damage_cost_ptr = &H52C
 Const civilians_run_down_ptr = &H510
